@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:weatherapp/WidgetsAll/fetchingData.dart';
 import 'package:weatherapp/pages/loading.dart';
 // import 'package:weatherapp/pages/location.dart';
 import './pages/Main.dart';
@@ -12,6 +13,7 @@ void main() {
     routes: {
       "/": (context) => Loading(),
       "/home": (context) => Main(weatherFetchedData: [],),
+      "/fetching": (context)=> fetchingData(),
     },
   ));
 }

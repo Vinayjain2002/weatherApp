@@ -31,11 +31,11 @@ Widget detailBoxes(BuildContext context,String value ,Icon icon_value,String typ
             child: Row(
               children: <Widget>[
                 Icon(icon_value.icon,
-                  size: 26,
+                  size: 23,
                   color: Colors.white,
                 ),
                 SizedBox(width: 8,),
-                Text(type_var,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: Colors.white),)
+                Text(type_var,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Colors.white),)
               ],
             ),
           ),
@@ -43,7 +43,7 @@ Widget detailBoxes(BuildContext context,String value ,Icon icon_value,String typ
           // now we are going to plave the value
           Padding(
             padding: const EdgeInsets.only(left: 20,top: 10),
-            child: Text(value,style: TextStyle(fontSize: 35,fontWeight: FontWeight.w700,color: Colors.white),
+            child: Text(value,style: TextStyle(fontSize: 30,fontWeight: FontWeight.w700,color: Colors.white),
             softWrap: true,),
           )
         ],

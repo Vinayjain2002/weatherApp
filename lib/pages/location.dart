@@ -45,12 +45,12 @@ class _LocationState extends State<Location> {
 
     // Initialize boxData using widget.windspeed
     boxData = [
-      {'icon': Icon(Icons.air), 'data': widget.windspeed,'description': 'wind Speed'},
-      {'icon': Icon(Icons.arrow_downward), 'data': widget.pressure,'description': 'Pressure'},
-      {'icon': Icon(Icons.opacity), 'data': widget.humidity,'description': 'Humidity'},
-      {'icon': Icon(Icons.beach_access), 'data': widget.rain_cond,'description': 'Rain Condition'},
-      {'icon': Icon(Icons.remove_red_eye), 'data': widget.visiblity,'description': 'Visiblity'},
-      {'icon': Icon(Icons.info), 'data': widget.weather_info,'description': 'Weather Info'},
+      {'icon': const Icon(Icons.air), 'data': widget.windspeed,'description': 'wind Speed'},
+      {'icon': const Icon(Icons.arrow_downward), 'data': widget.pressure,'description': 'Pressure'},
+      {'icon': const Icon(Icons.opacity), 'data': widget.humidity,'description': 'Humidity'},
+      {'icon': const Icon(Icons.beach_access), 'data': widget.rain_cond,'description': 'Rain Condition'},
+      {'icon': const Icon(Icons.remove_red_eye), 'data': widget.visiblity,'description': 'Visiblity'},
+      {'icon': const Icon(Icons.info), 'data': widget.weather_info,'description': 'Weather Info'},
     ];
     print(boxData.length);
   }
@@ -73,56 +73,52 @@ class _LocationState extends State<Location> {
                   )
               ),
 
-              child: Container(
-                height: MediaQuery.of(context).size.height*0.8,
-                child:  Column(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
                   children: <Widget>[
                     SizedBox(height: MediaQuery.of(context).size.height*0.05,),
-                    Text(widget.location,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 40,color: Color(
+                    Text(widget.location,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 40,color: Color(
                         0xFFBDBDBE)),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Text>[
-                        Text('${widget.temperature}°C ',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500,color: Color( 0xFFBDBDBE)),),
-                        Text('| ${widget.condition}',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 25,color: Color(
+                        Text('${widget.temperature}°C ',style: const TextStyle(fontSize: 25,fontWeight: FontWeight.w500,color: Color( 0xFFBDBDBE)),),
+                        Text('| ${widget.condition}',style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 25,color: Color(
                             0xFF3592FC)),),
                       ],
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                     // now we are going to place the boxes for the details of the data
-                    sunBox(context,widget.sunrise,widget.sunset,Icon(Icons.wb_sunny),Icon(Icons.brightness_3)),
+                    sunBox(context,widget.sunrise,widget.sunset,const Icon(Icons.wb_sunny),const Icon(Icons.brightness_3)),
                     SizedBox(height: MediaQuery.of(context).size.height*0.015,),
 
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width*0.92,
-                        height: MediaQuery.of(context).size.height*0.46,
-                        child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: boxData.length,
-                            itemBuilder: (context,index){
-                              // here we are going to place the data in the form of a container ie two sides by sides
-                              if(index+1<boxData.length){
-                                return Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: MediaQuery.of(context).size.width*1.0,
-                                    child: Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        // here we will create the two boxes
-                                        detailBoxes(context,boxData[index]["data"],boxData[index]["icon"],boxData[index]["description"]),
-                                        detailBoxes(context,boxData[index+1]["data"],boxData[index+1]["icon"],boxData[index+1]["description"]),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                            })
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 11),
+                      child: GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10.0,
+                          crossAxisSpacing: 15.0,
+                          childAspectRatio: 1.2,
+                        ),
+                          scrollDirection: Axis.vertical,
+                          itemCount: boxData.length,
+                          itemBuilder: (context,index){
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: detailBoxes(context,boxData[index]["data"],boxData[index]["icon"],boxData[index]["description"]),
+                              );
 
+                          },
+                      ),
                     ),
-
+                  SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                   ],),
               ),
+
             ),
 
             // we are going to place the bottom sheet
@@ -137,10 +133,17 @@ class _LocationState extends State<Location> {
                     .size
                     .width * 0.075),
                 child: Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.85,
+                  width: MediaQuery.of(context).size.width*1,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[
+                          Color(0xFF351350).withOpacity(0.5),
+                          Color(0xFF420342).withOpacity(0.5),
+                        ]
+                    ),
+                  ),
                   height: MediaQuery.of(context).size.height*0.1,
                   child: bottomButtons(context),
                 )),

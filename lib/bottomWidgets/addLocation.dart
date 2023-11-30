@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/Worker.dart';
-
+import 'package:weatherapp/DataFunctions/appbardata.dart';
 // so we had created a instance of the worker class for the purpose of the data
-Worker instance= new Worker();
 
-Widget addLocation(BuildContext context,String City){
+Widget addLocation(BuildContext context,String City,String Temp){
   // so we had gotted the possiblecity
-  List<Map<String,dynamic>>cityData=[];
-  Future<void>FetchData() async{
-    // here we are going to fetch the data of the indiviual card of the location.
-    cityData=await instance.getData(City as List<String>);
-  }
-  FetchData();
   String color="0xff015e94";
   //todo we need to run such that it will first fetch the data and then it will runthe Return statement
   return Card(
@@ -20,7 +13,7 @@ Widget addLocation(BuildContext context,String City){
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
     ),
-
+    //todo here we need to do the change of the color
     child: Container(
         width: MediaQuery.of(context).size.width*0.89,
         height: MediaQuery.of(context).size.height*0.05,
@@ -44,7 +37,7 @@ Widget addLocation(BuildContext context,String City){
                 ],),
                 Row(
                   children: <Widget>[
-                    Text(cityData[0]["minTemp"],style: TextStyle(fontWeight: FontWeight.w400,color: Colors.white,fontSize: 18),)
+                    Text(Temp,style: TextStyle(fontWeight: FontWeight.w400,color: Colors.white,fontSize: 18),)
                   ],
                 )
               ],

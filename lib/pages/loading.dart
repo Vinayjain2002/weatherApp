@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 import 'package:weatherapp/Worker.dart';
 import 'package:weatherapp/pages/Main.dart';
+import 'package:weatherapp/DataFunctions/appbardata.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
@@ -15,25 +16,23 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  List<Map<String,dynamic>> weatherData=[];
-  List<String> WeatherLocations=["panipat","hisar","gurugram","delhi"];
   Worker instance = Worker();
 
   Future<void> addLocations({String addLocation = ""}) async {
-    if(WeatherLocations.length>10){
-      while(WeatherLocations.length>10){
-        WeatherLocations.removeLast();
+    if(possibleCities.length>10){
+      while(possibleCities.length>10){
+        possibleCities.removeLast();
       }
     }
     // writting the code to add the element in the WeatherLocations
     if(addLocation.length!=0){
       //adding the element
-      WeatherLocations.add(addLocation);
+      possibleCities.add(addLocation);
     }
   }
   void fetchData() async{
     await addLocations();
-    weatherData=await instance.getData(WeatherLocations);
+    weatherData=await instance.getData(possibleCities);
     //todo now we are going to call the second screen of the data
     Navigator.push(context, MaterialPageRoute(builder: (context)=> Main(weatherFetchedData: weatherData)));
   }

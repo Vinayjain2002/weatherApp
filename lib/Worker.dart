@@ -166,6 +166,7 @@ class Worker {
   }
 
   Future<List<Map<String,dynamic>>> getData(List<String>locations_data) async {
+
     // Make an HTTP request to get data
     locations=locations_data;
     await getWeatherReport();
