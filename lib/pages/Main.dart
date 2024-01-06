@@ -87,7 +87,7 @@ Future<void>getData() async{
                   ],
                 ),
 
-                // this is for the purpose of the navigtion bar
+                // // this is for the purpose of the navigtion bar
                 appBar(context,"Search for a city"),
                 // now we are going to implement a listbuilder that will show the data
                 Container(
