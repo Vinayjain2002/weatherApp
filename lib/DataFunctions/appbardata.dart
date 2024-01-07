@@ -6,5 +6,5 @@ TextEditingController searchController= new TextEditingController();
 TextEditingController addFavourities=new TextEditingController();
 // ie the cities that could be possible on teh provided text in the TextField
 List<String>possibleCities=["Hisar","Panipat","Gurugram","Delhi"];
-List<Map<String,dynamic>> weatherData=[];
+List<Map<String,dynamic>> weatherFetchedData=[];
 

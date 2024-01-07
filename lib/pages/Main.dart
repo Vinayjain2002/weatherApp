@@ -34,12 +34,12 @@ class _HomeState extends State<Main> {
     setState(() {
       cities=List<String>.from(json.decode(citiesJson));
     });
-}
+  }
 
-Future<void>getData() async{
+  Future<void>getData() async{
     // so we had called the getData async function
     await addCities();
-}
+  }
 
   @override
   void initState() {
@@ -54,79 +54,79 @@ Future<void>getData() async{
         child: Stack(
           children: [
             Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-                  Color(0xFF010153),
-                  Color(0xff2f002f),
-                ],
-              ),
-            ),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.08,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                    ),
-
-                    // this is the weather text on the top
-                    Text(
-                      "WEATHER",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70,
-                      ),
-                    )
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[
+                    Color(0xFF010153),
+                    Color(0xff2f002f),
                   ],
                 ),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                      ),
 
-                // // this is for the purpose of the navigtion bar
-                appBar(context,"Search for a city"),
-                // now we are going to implement a listbuilder that will show the data
-                Container(
-                  height: MediaQuery.of(context).size.height*0.7,
-                  child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: widget.weatherFetchedData.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: <Widget>[
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.018),
-                        // Replace 'minTemp', 'weather_info', and 'location' with your actual keys
-                        buildWeatherContainer(
-                          context,
-                          '${widget.weatherFetchedData[index]["minTemp"]}',
-                          '${widget.weatherFetchedData[index]['weather_info']}',
-                          '${widget.weatherFetchedData[index]['location']}',
-                          '${widget.weatherFetchedData[index]['maxTemp']}',
-                          '${widget.weatherFetchedData[index]['icon']}',
-                          '${widget.weatherFetchedData[index]['description']}',
-                          '${widget.weatherFetchedData[index]['windspeed']}',
-                          '${widget.weatherFetchedData[index]['visiblity']}',
-                          '${widget.weatherFetchedData[index]['rain']}',
-                          '${widget.weatherFetchedData[index]['humidity']}',
-                          '${widget.weatherFetchedData[index]['pressure']}',
-                          '${widget.weatherFetchedData[index]['sunset']}',
-                          '${widget.weatherFetchedData[index]['sunrise']}',
-                          "sunny.png"
+                      // this is the weather text on the top
+                      Text(
+                        "WEATHER",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white70,
                         ),
-                      ],
-                    );
-                  },
-                ),)
+                      )
+                    ],
+                  ),
+
+                  // // this is for the purpose of the navigtion bar
+                  appBar(context,"Search for a city"),
+                  // now we are going to implement a listbuilder that will show the data
+                  Container(
+                    height: MediaQuery.of(context).size.height*0.7,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: widget.weatherFetchedData.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: <Widget>[
+                            SizedBox(height: MediaQuery.of(context).size.height * 0.018),
+                            // Replace 'minTemp', 'weather_info', and 'location' with your actual keys
+                            buildWeatherContainer(
+                                context,
+                                '${widget.weatherFetchedData[index]["minTemp"]}',
+                                '${widget.weatherFetchedData[index]['weather_info']}',
+                                '${widget.weatherFetchedData[index]['location']}',
+                                '${widget.weatherFetchedData[index]['maxTemp']}',
+                                '${widget.weatherFetchedData[index]['icon']}',
+                                '${widget.weatherFetchedData[index]['description']}',
+                                '${widget.weatherFetchedData[index]['windspeed']}',
+                                '${widget.weatherFetchedData[index]['visiblity']}',
+                                '${widget.weatherFetchedData[index]['rain']}',
+                                '${widget.weatherFetchedData[index]['humidity']}',
+                                '${widget.weatherFetchedData[index]['pressure']}',
+                                '${widget.weatherFetchedData[index]['sunset']}',
+                                '${widget.weatherFetchedData[index]['sunrise']}',
+                                "sunny.png"
+                            ),
+                          ],
+                        );
+                      },
+                    ),)
 
 
-              ],
+                ],
+              ),
+
             ),
-
-          ),
             Positioned(
                 bottom: 0,
                 left: (MediaQuery
@@ -151,4 +151,3 @@ Future<void>getData() async{
     );
   }
 }
-

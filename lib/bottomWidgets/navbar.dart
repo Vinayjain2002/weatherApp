@@ -10,7 +10,7 @@ TextEditingController addFavouritiesSheet= TextEditingController();
 
 Future<void> fetchData() async {
   Worker instance = Worker();
-  weatherData = await instance.getData(possibleCities);
+  weatherFetchedData = await instance.getData(possibleCities);
   // so we had fetched the data
 }
 
@@ -32,7 +32,7 @@ Widget appBar(BuildContext context, String text) {
           context,
           MaterialPageRoute(
             builder: (context) =>
-                Main(weatherFetchedData: weatherData), // Adjust data accordingly
+                Main(weatherFetchedData: weatherFetchedData), // Adjust data accordingly
           ),
         );
       },

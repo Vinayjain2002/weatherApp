@@ -66,7 +66,7 @@ Widget addLocationBottomSheet(BuildContext context,String temperature) {
                           return Padding(padding: EdgeInsets.only(top: 7),
                             child: Container(
                               //todo here we need to add the things related to the container ie temp and the location
-                                child: addLocation(context,weatherData[index]["location"],weatherData[index]["minTemp"]),
+                                child: addLocation(context,weatherFetchedData[index]["location"],weatherFetchedData[index]["minTemp"]),
                             ),
                           );
                         },

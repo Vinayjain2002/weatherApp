@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../DataFunctions/appbardata.dart';
 import '../Worker.dart';
 import 'Main.dart';
 //todo this page is for the purpose of te data bringing from the server and then redirecting the page to the
@@ -15,8 +16,6 @@ class dataBringing extends StatefulWidget {
 // going to create a instance of the class for the purpose of the feching the data According to the REquirements of teh users
 
 class _dataBringingState extends State<dataBringing> {
-  late final List<Map<String, dynamic>> weatherFetchedData;
-
   @override
   Worker instance = new Worker();
 
